@@ -13,9 +13,13 @@ const SimulationDashboard = () => {
     if (!decision.trim()) return;
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/simulate", {
-        decision,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/simulate`,
+        {
+          decision,
+        }
+      );
+
       setSimulationData(res.data.futures);
       setCurrentPage(0);
     } catch (err) {
@@ -27,7 +31,9 @@ const SimulationDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white p-8">
-      <h1 className="text-3xl font-bold text-center mb-6">Talk to Your Future</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">
+        Talk to Your Future
+      </h1>
 
       {!simulationData && (
         <div className="flex flex-col items-center gap-4">
@@ -76,7 +82,9 @@ const SimulationDashboard = () => {
               <div
                 key={idx}
                 className={`h-2 w-8 rounded-full transition-all duration-300 ${
-                  currentPage === idx ? "bg-indigo-500 scale-110" : "bg-gray-700 opacity-50"
+                  currentPage === idx
+                    ? "bg-indigo-500 scale-110"
+                    : "bg-gray-700 opacity-50"
                 }`}
               />
             ))}

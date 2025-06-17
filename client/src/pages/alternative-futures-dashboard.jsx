@@ -1,11 +1,19 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 // Custom UI Components with modern navbar theme
-const Button = ({ children, onClick, disabled, className, variant = "default", size = "default", ...props }) => {
+const Button = ({
+  children,
+  onClick,
+  disabled,
+  className,
+  variant = "default",
+  size = "default",
+  ...props
+}) => {
   const baseClasses =
-    "inline-flex items-center justify-center font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none transform hover:scale-105"
+    "inline-flex items-center justify-center font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none transform hover:scale-105";
 
   const variants = {
     default:
@@ -14,12 +22,12 @@ const Button = ({ children, onClick, disabled, className, variant = "default", s
       "hover:bg-gray-700/50 backdrop-blur-sm text-gray-300 hover:text-white rounded-full border border-gray-600 hover:border-purple-500",
     outline:
       "border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white rounded-full backdrop-blur-sm",
-  }
+  };
 
   const sizes = {
     default: "h-12 py-3 px-6",
     sm: "h-9 px-4 rounded-full text-sm",
-  }
+  };
 
   return (
     <button
@@ -30,8 +38,8 @@ const Button = ({ children, onClick, disabled, className, variant = "default", s
     >
       {children}
     </button>
-  )
-}
+  );
+};
 
 const Card = ({ children, className, ...props }) => (
   <div
@@ -40,13 +48,16 @@ const Card = ({ children, className, ...props }) => (
   >
     {children}
   </div>
-)
+);
 
 const CardHeader = ({ children, className, ...props }) => (
-  <div className={`flex flex-col space-y-1.5 p-4 sm:p-6 ${className}`} {...props}>
+  <div
+    className={`flex flex-col space-y-1.5 p-4 sm:p-6 ${className}`}
+    {...props}
+  >
     {children}
   </div>
-)
+);
 
 const CardTitle = ({ children, className, ...props }) => (
   <h3
@@ -55,20 +66,20 @@ const CardTitle = ({ children, className, ...props }) => (
   >
     {children}
   </h3>
-)
+);
 
 const CardContent = ({ children, className, ...props }) => (
   <div className={`p-4 sm:p-6 pt-0 ${className}`} {...props}>
     {children}
   </div>
-)
+);
 
 const Textarea = ({ className, ...props }) => (
   <textarea
     className={`flex min-h-[100px] w-full rounded-xl border border-gray-600 bg-gray-800/50 backdrop-blur-sm px-4 py-3 text-sm text-white placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:border-purple-500 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300 ${className}`}
     {...props}
   />
-)
+);
 
 const Label = ({ children, className, htmlFor, ...props }) => (
   <label
@@ -78,10 +89,10 @@ const Label = ({ children, className, htmlFor, ...props }) => (
   >
     {children}
   </label>
-)
+);
 
 const Select = ({ children, value, onValueChange, className }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="relative">
@@ -91,12 +102,19 @@ const Select = ({ children, value, onValueChange, className }) => {
       >
         <span>{value}</span>
         <svg
-          className={`h-4 w-4 opacity-50 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`h-4 w-4 opacity-50 transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </button>
       {isOpen && (
@@ -104,16 +122,16 @@ const Select = ({ children, value, onValueChange, className }) => {
           {React.Children.map(children, (child) =>
             React.cloneElement(child, {
               onSelect: (val) => {
-                onValueChange(val)
-                setIsOpen(false)
+                onValueChange(val);
+                setIsOpen(false);
               },
-            }),
+            })
           )}
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 const SelectItem = ({ children, value, onSelect }) => (
   <div
@@ -122,29 +140,64 @@ const SelectItem = ({ children, value, onSelect }) => (
   >
     {children}
   </div>
-)
+);
 
 // Modern Icons with gradients
 const ChevronLeft = ({ className }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 19l-7-7 7-7"
+    />
   </svg>
-)
+);
 
 const ChevronRight = ({ className }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
   </svg>
-)
+);
 
 const Sparkles = ({ className }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3l14 9-14 9V3z" />
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M5 3l14 9-14 9V3z"
+    />
   </svg>
-)
+);
 
 const Copy = ({ className }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -152,11 +205,21 @@ const Copy = ({ className }) => (
       d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
     />
   </svg>
-)
+);
 
 const Eye = ({ className }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+    />
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -164,7 +227,7 @@ const Eye = ({ className }) => (
       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
     />
   </svg>
-)
+);
 
 // Gemini AI-inspired Skeleton Components
 const SkeletonLine = ({ className, delay = 0 }) => (
@@ -178,12 +241,16 @@ const SkeletonLine = ({ className, delay = 0 }) => (
   >
     <style jsx>{`
       @keyframes shimmer {
-        0% { background-position: -200% 0; }
-        100% { background-position: 200% 0; }
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
       }
     `}</style>
   </div>
-)
+);
 
 const SkeletonCard = ({ delay = 0 }) => (
   <Card className="animate-pulse border-purple-500/10">
@@ -192,7 +259,10 @@ const SkeletonCard = ({ delay = 0 }) => (
         <div className="flex-1 space-y-3">
           <div className="flex items-center space-x-3">
             <SkeletonLine className="h-6 w-32" delay={delay} />
-            <SkeletonLine className="h-2 w-2 rounded-full" delay={delay + 100} />
+            <SkeletonLine
+              className="h-2 w-2 rounded-full"
+              delay={delay + 100}
+            />
           </div>
           <SkeletonLine className="h-8 w-3/4" delay={delay + 200} />
         </div>
@@ -213,8 +283,14 @@ const SkeletonCard = ({ delay = 0 }) => (
             <SkeletonLine className="h-6 w-24" delay={delay + 800} />
             {[...Array(4)].map((_, i) => (
               <div key={i} className="flex items-center space-x-3">
-                <SkeletonLine className="h-4 w-4 rounded-full" delay={delay + 900 + i * 100} />
-                <SkeletonLine className="h-4 flex-1" delay={delay + 950 + i * 100} />
+                <SkeletonLine
+                  className="h-4 w-4 rounded-full"
+                  delay={delay + 900 + i * 100}
+                />
+                <SkeletonLine
+                  className="h-4 flex-1"
+                  delay={delay + 950 + i * 100}
+                />
               </div>
             ))}
           </div>
@@ -222,8 +298,14 @@ const SkeletonCard = ({ delay = 0 }) => (
             <SkeletonLine className="h-6 w-24" delay={delay + 1300} />
             {[...Array(4)].map((_, i) => (
               <div key={i} className="flex items-center space-x-3">
-                <SkeletonLine className="h-4 w-4 rounded-full" delay={delay + 1400 + i * 100} />
-                <SkeletonLine className="h-4 flex-1" delay={delay + 1450 + i * 100} />
+                <SkeletonLine
+                  className="h-4 w-4 rounded-full"
+                  delay={delay + 1400 + i * 100}
+                />
+                <SkeletonLine
+                  className="h-4 flex-1"
+                  delay={delay + 1450 + i * 100}
+                />
               </div>
             ))}
           </div>
@@ -231,7 +313,7 @@ const SkeletonCard = ({ delay = 0 }) => (
       </div>
     </CardContent>
   </Card>
-)
+);
 
 const SkeletonChart = ({ delay = 0 }) => (
   <Card className="animate-pulse border-purple-500/10">
@@ -243,15 +325,21 @@ const SkeletonChart = ({ delay = 0 }) => (
         {[...Array(4)].map((_, i) => (
           <div key={i} className="text-center space-y-4">
             <div className="relative w-24 h-24 mx-auto">
-              <SkeletonLine className="w-24 h-24 rounded-full" delay={delay + i * 200} />
+              <SkeletonLine
+                className="w-24 h-24 rounded-full"
+                delay={delay + i * 200}
+              />
             </div>
-            <SkeletonLine className="h-4 w-20 mx-auto" delay={delay + 800 + i * 100} />
+            <SkeletonLine
+              className="h-4 w-20 mx-auto"
+              delay={delay + 800 + i * 100}
+            />
           </div>
         ))}
       </div>
     </CardContent>
   </Card>
-)
+);
 
 // Fixed Custom Radio Group Components
 const RadioGroup = ({ value, onValueChange, className, children }) => (
@@ -261,22 +349,22 @@ const RadioGroup = ({ value, onValueChange, className, children }) => (
         return React.cloneElement(child, {
           selectedValue: value,
           onValueChange,
-        })
+        });
       }
-      return child
+      return child;
     })}
   </div>
-)
+);
 
 const RadioGroupItem = ({ value, id, selectedValue, onValueChange }) => {
   const handleClick = () => {
-    console.log("Radio button clicked:", value) // Debug log
+    console.log("Radio button clicked:", value); // Debug log
     if (onValueChange) {
-      onValueChange(value)
+      onValueChange(value);
     }
-  }
+  };
 
-  const isSelected = selectedValue === value
+  const isSelected = selectedValue === value;
 
   return (
     <button
@@ -297,66 +385,66 @@ const RadioGroupItem = ({ value, id, selectedValue, onValueChange }) => {
         </div>
       )}
     </button>
-  )
-}
+  );
+};
 
 export default function AlternativeFuturesDashboard() {
-  const [inputText, setInputText] = useState("")
-  const [selectedInfo, setSelectedInfo] = useState("Kavya AI")
-  const [futureScope, setFutureScope] = useState("5 years")
-  const [isGenerating, setIsGenerating] = useState(false)
-  const [currentPage, setCurrentPage] = useState(0)
-  const [detailLevel, setDetailLevel] = useState("basic")
-  const [parsedFutures, setParsedFutures] = useState([])
-  const [hasResults, setHasResults] = useState(false)
-  const [showDetailModal, setShowDetailModal] = useState(false)
-  const [copySuccess, setCopySuccess] = useState(false)
+  const [inputText, setInputText] = useState("");
+  const [selectedInfo, setSelectedInfo] = useState("Kavya AI");
+  const [futureScope, setFutureScope] = useState("5 years");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [detailLevel, setDetailLevel] = useState("basic");
+  const [parsedFutures, setParsedFutures] = useState([]);
+  const [hasResults, setHasResults] = useState(false);
+  const [showDetailModal, setShowDetailModal] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   const parseFuturesFromText = (text) => {
-    const futures = []
-    const futureBlocks = text.split(/Future \d+:/)
+    const futures = [];
+    const futureBlocks = text.split(/Future \d+:/);
 
     futureBlocks.forEach((block, index) => {
-      if (index === 0) return
+      if (index === 0) return;
 
       const lines = block
         .trim()
         .split("\n")
-        .filter((line) => line.trim())
-      let title = ""
-      let description = ""
-      const pros = []
-      const cons = []
-      let currentSection = ""
+        .filter((line) => line.trim());
+      let title = "";
+      let description = "";
+      const pros = [];
+      const cons = [];
+      let currentSection = "";
 
       lines.forEach((line) => {
-        const trimmedLine = line.trim()
+        const trimmedLine = line.trim();
 
         if (trimmedLine.startsWith("Title:")) {
-          title = trimmedLine.replace("Title:", "").trim()
+          title = trimmedLine.replace("Title:", "").trim();
         } else if (trimmedLine.startsWith("Description:")) {
-          description = trimmedLine.replace("Description:", "").trim()
+          description = trimmedLine.replace("Description:", "").trim();
         } else if (trimmedLine === "Pros:") {
-          currentSection = "pros"
+          currentSection = "pros";
         } else if (trimmedLine === "Cons:") {
-          currentSection = "cons"
+          currentSection = "cons";
         } else if (trimmedLine.startsWith("- ")) {
-          const item = trimmedLine.replace("- ", "")
+          const item = trimmedLine.replace("- ", "");
           if (currentSection === "pros") {
-            pros.push(item)
+            pros.push(item);
           } else if (currentSection === "cons") {
-            cons.push(item)
+            cons.push(item);
           }
         }
-      })
+      });
 
       if (title && description) {
-        futures.push({ title, description, pros, cons })
+        futures.push({ title, description, pros, cons });
       }
-    })
+    });
 
-    return futures
-  }
+    return futures;
+  };
 
   // Generate mock futures if API doesn't return enough
   const generateMockFutures = (count, decision) => {
@@ -370,13 +458,28 @@ export default function AlternativeFuturesDashboard() {
           "Maintains current stability",
           "Easier to reverse if needed",
         ],
-        cons: ["Slower progress", "May miss opportunities", "Limited growth potential", "Could lead to regret"],
+        cons: [
+          "Slower progress",
+          "May miss opportunities",
+          "Limited growth potential",
+          "Could lead to regret",
+        ],
       },
       {
         title: "Aggressive Growth Strategy",
         description: `Pursuing an ambitious path with ${decision}. This approach maximizes potential gains but comes with higher risks.`,
-        pros: ["Maximum growth potential", "Faster achievement of goals", "Higher rewards", "Builds confidence"],
-        cons: ["Higher risk of failure", "Requires more resources", "Stressful execution", "Less predictable outcomes"],
+        pros: [
+          "Maximum growth potential",
+          "Faster achievement of goals",
+          "Higher rewards",
+          "Builds confidence",
+        ],
+        cons: [
+          "Higher risk of failure",
+          "Requires more resources",
+          "Stressful execution",
+          "Less predictable outcomes",
+        ],
       },
       {
         title: "Balanced Hybrid Approach",
@@ -403,92 +506,104 @@ export default function AlternativeFuturesDashboard() {
           "Potential for breakthrough",
           "Differentiated approach",
         ],
-        cons: ["Unproven methods", "Higher uncertainty", "May lack support", "Requires more research"],
+        cons: [
+          "Unproven methods",
+          "Higher uncertainty",
+          "May lack support",
+          "Requires more research",
+        ],
       },
-    ]
+    ];
 
-    return mockFutures.slice(0, count)
-  }
+    return mockFutures.slice(0, count);
+  };
 
   const handleGenerate = async () => {
-    if (!inputText.trim()) return
+    if (!inputText.trim()) return;
 
-    setIsGenerating(true)
-    setHasResults(false)
-    setParsedFutures([])
+    setIsGenerating(true);
+    setHasResults(false);
+    setParsedFutures([]);
 
     try {
-      const res = await fetch("http://localhost:3001/api/simulate/run", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          decision: inputText,
-          age: 30,
-          goals: "Grow professionally while maintaining balance",
-          risk: "Moderate",
-          scope: futureScope,
-          detailLevel: detailLevel,
-        }),
-      })
-
-      const data = await res.json()
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/simulate/run`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            decision: inputText,
+            age: 30,
+            goals: "Grow professionally while maintaining balance",
+            risk: "Moderate",
+            scope: futureScope,
+            detailLevel: detailLevel,
+          }),
+        }
+      );
+      const data = await res.json();
 
       if (data.result) {
-        const parsed = parseFuturesFromText(data.result)
+        const parsed = parseFuturesFromText(data.result);
 
         // Determine expected number of futures based on detail level
-        const expectedCount = detailLevel === "detailed" ? 4 : 2
+        const expectedCount = detailLevel === "detailed" ? 4 : 2;
 
-        let finalFutures = parsed
+        let finalFutures = parsed;
 
         // If we don't have enough futures from API, supplement with mock data
         if (parsed.length < expectedCount) {
-          const mockFutures = generateMockFutures(expectedCount, inputText)
-          finalFutures = [...parsed, ...mockFutures.slice(parsed.length, expectedCount)]
+          const mockFutures = generateMockFutures(expectedCount, inputText);
+          finalFutures = [
+            ...parsed,
+            ...mockFutures.slice(parsed.length, expectedCount),
+          ];
         } else if (parsed.length > expectedCount) {
           // If we have too many, trim to expected count
-          finalFutures = parsed.slice(0, expectedCount)
+          finalFutures = parsed.slice(0, expectedCount);
         }
 
-        setParsedFutures(finalFutures)
-        setHasResults(true)
-        setCurrentPage(0)
+        setParsedFutures(finalFutures);
+        setHasResults(true);
+        setCurrentPage(0);
       } else {
         // Fallback to mock data if API fails
-        const expectedCount = detailLevel === "detailed" ? 4 : 2
-        const mockFutures = generateMockFutures(expectedCount, inputText)
-        setParsedFutures(mockFutures)
-        setHasResults(true)
-        setCurrentPage(0)
+        const expectedCount = detailLevel === "detailed" ? 4 : 2;
+        const mockFutures = generateMockFutures(expectedCount, inputText);
+        setParsedFutures(mockFutures);
+        setHasResults(true);
+        setCurrentPage(0);
       }
     } catch (err) {
-      console.error("Error generating:", err)
+      console.error("Error generating:", err);
       // Fallback to mock data on error
-      const expectedCount = detailLevel === "detailed" ? 4 : 2
-      const mockFutures = generateMockFutures(expectedCount, inputText)
-      setParsedFutures(mockFutures)
-      setHasResults(true)
-      setCurrentPage(0)
+      const expectedCount = detailLevel === "detailed" ? 4 : 2;
+      const mockFutures = generateMockFutures(expectedCount, inputText);
+      setParsedFutures(mockFutures);
+      setHasResults(true);
+      setCurrentPage(0);
     } finally {
-      setIsGenerating(false)
+      setIsGenerating(false);
     }
-  }
+  };
 
   const nextPage = () => {
     if (parsedFutures.length > 0) {
-      setCurrentPage((prev) => (prev + 1) % parsedFutures.length)
+      setCurrentPage((prev) => (prev + 1) % parsedFutures.length);
     }
-  }
+  };
 
   const prevPage = () => {
     if (parsedFutures.length > 0) {
-      setCurrentPage((prev) => (prev - 1 + parsedFutures.length) % parsedFutures.length)
+      setCurrentPage(
+        (prev) => (prev - 1 + parsedFutures.length) % parsedFutures.length
+      );
     }
-  }
+  };
 
   const goToPage = (page) => {
-    setCurrentPage(page)
-  }
+    setCurrentPage(page);
+  };
 
   const generateMockData = (futureIndex) => {
     const baseValues = [
@@ -496,9 +611,9 @@ export default function AlternativeFuturesDashboard() {
       [85, 72, 58, 91],
       [82, 45, 67, 74],
       [76, 88, 71, 52],
-    ]
-    return baseValues[futureIndex % baseValues.length] || [70, 70, 70, 70]
-  }
+    ];
+    return baseValues[futureIndex % baseValues.length] || [70, 70, 70, 70];
+  };
 
   const generateTrajectoryData = (futureIndex) => {
     const baseData = [
@@ -506,13 +621,13 @@ export default function AlternativeFuturesDashboard() {
       [55, 62, 68, 71, 74],
       [50, 58, 65, 70, 73],
       [65, 70, 75, 78, 80],
-    ]
-    return baseData[futureIndex % baseData.length] || [60, 65, 70, 72, 75]
-  }
+    ];
+    return baseData[futureIndex % baseData.length] || [60, 65, 70, 72, 75];
+  };
 
   const handleCopyScenario = async () => {
     if (parsedFutures.length > 0) {
-      const currentFuture = parsedFutures[currentPage]
+      const currentFuture = parsedFutures[currentPage];
       const textToCopy = `
 Future Scenario: ${currentFuture.title}
 
@@ -523,25 +638,25 @@ ${currentFuture.pros.map((pro) => `• ${pro}`).join("\n")}
 
 Challenges:
 ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
-      `.trim()
+      `.trim();
 
       try {
-        await navigator.clipboard.writeText(textToCopy)
-        setCopySuccess(true)
-        setTimeout(() => setCopySuccess(false), 2000)
+        await navigator.clipboard.writeText(textToCopy);
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 2000);
       } catch (err) {
-        console.error("Failed to copy:", err)
+        console.error("Failed to copy:", err);
       }
     }
-  }
+  };
 
   const handleEyeClick = () => {
-    setShowDetailModal(true)
-  }
+    setShowDetailModal(true);
+  };
 
   const closeDetailModal = () => {
-    setShowDetailModal(false)
-  }
+    setShowDetailModal(false);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#121212] via-[#1A1A21] to-[#2A1A3A] text-white p-3 sm:p-6 relative overflow-hidden">
@@ -584,14 +699,18 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 <div>
-                  <Label className="block text-sm font-medium mb-3 text-gray-300">🤖 Information Source</Label>
+                  <Label className="block text-sm font-medium mb-3 text-gray-300">
+                    🤖 Information Source
+                  </Label>
                   <Select value={selectedInfo} onValueChange={setSelectedInfo}>
                     <SelectItem value="Kavya AI">Kavya AI</SelectItem>
                   </Select>
                 </div>
 
                 <div>
-                  <Label className="block text-sm font-medium mb-3 text-gray-300">⏰ Future Scope</Label>
+                  <Label className="block text-sm font-medium mb-3 text-gray-300">
+                    ⏰ Future Scope
+                  </Label>
                   <Select value={futureScope} onValueChange={setFutureScope}>
                     <SelectItem value="1 year">1 year</SelectItem>
                     <SelectItem value="3 years">3 years</SelectItem>
@@ -610,7 +729,9 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                         onChange={() => setDetailLevel("basic")}
                         className="form-radio text-indigo-600"
                       />
-                      <span className="text-sm text-gray-300 cursor-pointer">Basic</span>
+                      <span className="text-sm text-gray-300 cursor-pointer">
+                        Basic
+                      </span>
                     </label>
 
                     <label className="flex items-center space-x-2">
@@ -622,7 +743,9 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                         onChange={() => setDetailLevel("detailed")}
                         className="form-radio text-indigo-600"
                       />
-                      <span className="text-sm text-gray-300 cursor-pointer">Detailed</span>
+                      <span className="text-sm text-gray-300 cursor-pointer">
+                        Detailed
+                      </span>
                     </label>
                   </div>
                 </div>
@@ -635,8 +758,12 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
               >
                 <Sparkles className="w-5 h-5 mr-3" />
                 {isGenerating
-                  ? `🔮 Generating ${detailLevel === "detailed" ? "4" : "2"} Alternative Futures...`
-                  : `🚀 Generate ${detailLevel === "detailed" ? "4" : "2"} Alternative Futures`}
+                  ? `🔮 Generating ${
+                      detailLevel === "detailed" ? "4" : "2"
+                    } Alternative Futures...`
+                  : `🚀 Generate ${
+                      detailLevel === "detailed" ? "4" : "2"
+                    } Alternative Futures`}
               </Button>
             </div>
           </CardContent>
@@ -657,7 +784,9 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                       🔮 Analyzing your decision...
                     </p>
                     <p className="text-sm sm:text-base text-gray-400">
-                      Creating {detailLevel === "detailed" ? "4 detailed" : "2 focused"} future scenarios
+                      Creating{" "}
+                      {detailLevel === "detailed" ? "4 detailed" : "2 focused"}{" "}
+                      future scenarios
                     </p>
                   </div>
                   <div className="flex space-x-2">
@@ -691,14 +820,19 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
             <Card className="border border-purple-500/20">
               <CardContent className="p-4 sm:p-6">
                 <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-                  <Button onClick={prevPage} variant="ghost" className="flex items-center space-x-2 w-full sm:w-auto">
+                  <Button
+                    onClick={prevPage}
+                    variant="ghost"
+                    className="flex items-center space-x-2 w-full sm:w-auto"
+                  >
                     <ChevronLeft className="w-5 h-5" />
                     <span>Previous</span>
                   </Button>
 
                   <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
                     <span className="text-gray-400 font-medium text-sm sm:text-base">
-                      {detailLevel === "detailed" ? "Detailed" : "Basic"} Analysis
+                      {detailLevel === "detailed" ? "Detailed" : "Basic"}{" "}
+                      Analysis
                     </span>
                     <div className="flex space-x-2 sm:space-x-3">
                       {parsedFutures.map((_, index) => (
@@ -717,10 +851,16 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                         </Button>
                       ))}
                     </div>
-                    <span className="text-gray-400 font-medium text-sm sm:text-base">of {parsedFutures.length}</span>
+                    <span className="text-gray-400 font-medium text-sm sm:text-base">
+                      of {parsedFutures.length}
+                    </span>
                   </div>
 
-                  <Button onClick={nextPage} variant="ghost" className="flex items-center space-x-2 w-full sm:w-auto">
+                  <Button
+                    onClick={nextPage}
+                    variant="ghost"
+                    className="flex items-center space-x-2 w-full sm:w-auto"
+                  >
                     <span>Next</span>
                     <ChevronRight className="w-5 h-5" />
                   </Button>
@@ -735,7 +875,10 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                 style={{ transform: `translateX(-${currentPage * 100}%)` }}
               >
                 {parsedFutures.map((future, pageIndex) => (
-                  <div key={pageIndex} className="w-full flex-shrink-0 space-y-6 sm:space-y-8">
+                  <div
+                    key={pageIndex}
+                    className="w-full flex-shrink-0 space-y-6 sm:space-y-8"
+                  >
                     {/* Future Details */}
                     <Card className="border border-purple-500/30 hover:border-purple-500/50">
                       <CardHeader>
@@ -748,22 +891,30 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                               <div className="flex items-center space-x-2">
                                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                                 <span className="text-xs text-gray-400">
-                                  {detailLevel === "detailed" ? "Detailed Analysis" : "Basic Overview"}
+                                  {detailLevel === "detailed"
+                                    ? "Detailed Analysis"
+                                    : "Basic Overview"}
                                 </span>
                               </div>
                             </div>
-                            <CardTitle className="text-xl sm:text-2xl md:text-3xl">{future.title}</CardTitle>
+                            <CardTitle className="text-xl sm:text-2xl md:text-3xl">
+                              {future.title}
+                            </CardTitle>
                           </div>
                           <div className="flex items-center space-x-2">
                             <Button
                               onClick={handleCopyScenario}
                               variant="ghost"
                               size="sm"
-                              className={`text-gray-400 hover:text-white transition-all duration-200 ${copySuccess ? "text-green-400" : ""}`}
+                              className={`text-gray-400 hover:text-white transition-all duration-200 ${
+                                copySuccess ? "text-green-400" : ""
+                              }`}
                               title="Copy scenario to clipboard"
                             >
                               <Copy className="w-4 h-4" />
-                              {copySuccess && <span className="ml-1 text-xs">✓</span>}
+                              {copySuccess && (
+                                <span className="ml-1 text-xs">✓</span>
+                              )}
                             </Button>
                             <Button
                               onClick={handleEyeClick}
@@ -801,7 +952,9 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                                       <span className="text-green-400 mr-3 mt-1 group-hover:scale-110 transition-transform">
                                         ✓
                                       </span>
-                                      <span className="group-hover:text-white transition-colors">{pro}</span>
+                                      <span className="group-hover:text-white transition-colors">
+                                        {pro}
+                                      </span>
                                     </li>
                                   ))}
                               </ul>
@@ -824,7 +977,9 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                                       <span className="text-red-400 mr-3 mt-1 group-hover:scale-110 transition-transform">
                                         ⚠
                                       </span>
-                                      <span className="group-hover:text-white transition-colors">{con}</span>
+                                      <span className="group-hover:text-white transition-colors">
+                                        {con}
+                                      </span>
                                     </li>
                                   ))}
                               </ul>
@@ -844,51 +999,64 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                       </CardHeader>
                       <CardContent>
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
-                          {["Career Growth", "Life Satisfaction", "Financial Stability", "Work-Life Balance"].map(
-                            (label, index) => {
-                              const value = generateMockData(pageIndex)[index]
-                              const colors = ["#6366F1", "#EC4899", "#06B6D4", "#8B5CF6"]
-                              const circumference = 2 * Math.PI * 15.9155
-                              const strokeDasharray = `${(value / 100) * circumference} ${circumference}`
+                          {[
+                            "Career Growth",
+                            "Life Satisfaction",
+                            "Financial Stability",
+                            "Work-Life Balance",
+                          ].map((label, index) => {
+                            const value = generateMockData(pageIndex)[index];
+                            const colors = [
+                              "#6366F1",
+                              "#EC4899",
+                              "#06B6D4",
+                              "#8B5CF6",
+                            ];
+                            const circumference = 2 * Math.PI * 15.9155;
+                            const strokeDasharray = `${
+                              (value / 100) * circumference
+                            } ${circumference}`;
 
-                              return (
-                                <div key={index} className="text-center group">
-                                  <div className="relative w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
-                                    <svg className="w-16 h-16 sm:w-24 sm:h-24 transform -rotate-90" viewBox="0 0 36 36">
-                                      {/* Background circle */}
-                                      <path
-                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        fill="none"
-                                        stroke="#1F2937"
-                                        strokeWidth="3"
-                                      />
-                                      {/* Progress circle */}
-                                      <path
-                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        fill="none"
-                                        stroke={colors[index]}
-                                        strokeWidth="3"
-                                        strokeDasharray={strokeDasharray}
-                                        strokeLinecap="round"
-                                        className="drop-shadow-lg"
-                                        style={{
-                                          filter: `drop-shadow(0 0 6px ${colors[index]}40)`,
-                                        }}
-                                      />
-                                    </svg>
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                      <span className="text-base sm:text-xl font-bold text-white group-hover:scale-110 transition-transform">
-                                        {value}%
-                                      </span>
-                                    </div>
+                            return (
+                              <div key={index} className="text-center group">
+                                <div className="relative w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                                  <svg
+                                    className="w-16 h-16 sm:w-24 sm:h-24 transform -rotate-90"
+                                    viewBox="0 0 36 36"
+                                  >
+                                    {/* Background circle */}
+                                    <path
+                                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                      fill="none"
+                                      stroke="#1F2937"
+                                      strokeWidth="3"
+                                    />
+                                    {/* Progress circle */}
+                                    <path
+                                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                      fill="none"
+                                      stroke={colors[index]}
+                                      strokeWidth="3"
+                                      strokeDasharray={strokeDasharray}
+                                      strokeLinecap="round"
+                                      className="drop-shadow-lg"
+                                      style={{
+                                        filter: `drop-shadow(0 0 6px ${colors[index]}40)`,
+                                      }}
+                                    />
+                                  </svg>
+                                  <div className="absolute inset-0 flex items-center justify-center">
+                                    <span className="text-base sm:text-xl font-bold text-white group-hover:scale-110 transition-transform">
+                                      {value}%
+                                    </span>
                                   </div>
-                                  <p className="text-xs sm:text-sm text-gray-400 group-hover:text-white transition-colors font-medium">
-                                    {label}
-                                  </p>
                                 </div>
-                              )
-                            },
-                          )}
+                                <p className="text-xs sm:text-sm text-gray-400 group-hover:text-white transition-colors font-medium">
+                                  {label}
+                                </p>
+                              </div>
+                            );
+                          })}
                         </div>
                       </CardContent>
                     </Card>
@@ -906,7 +1074,12 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                           <svg className="w-full h-full" viewBox="0 0 600 300">
                             {/* Enhanced Grid pattern */}
                             <defs>
-                              <pattern id={`grid-${pageIndex}`} width="60" height="30" patternUnits="userSpaceOnUse">
+                              <pattern
+                                id={`grid-${pageIndex}`}
+                                width="60"
+                                height="30"
+                                patternUnits="userSpaceOnUse"
+                              >
                                 <path
                                   d="M 60 0 L 0 0 0 30"
                                   fill="none"
@@ -915,13 +1088,23 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                                   opacity="0.5"
                                 />
                               </pattern>
-                              <linearGradient id={`lineGradient-${pageIndex}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                              <linearGradient
+                                id={`lineGradient-${pageIndex}`}
+                                x1="0%"
+                                y1="0%"
+                                x2="100%"
+                                y2="0%"
+                              >
                                 <stop offset="0%" stopColor="#8B5CF6" />
                                 <stop offset="50%" stopColor="#EC4899" />
                                 <stop offset="100%" stopColor="#06B6D4" />
                               </linearGradient>
                             </defs>
-                            <rect width="100%" height="100%" fill={`url(#grid-${pageIndex})`} />
+                            <rect
+                              width="100%"
+                              height="100%"
+                              fill={`url(#grid-${pageIndex})`}
+                            />
 
                             {/* Y-axis labels */}
                             {[0, 25, 50, 75, 100].map((val, i) => (
@@ -945,10 +1128,13 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                               stroke={`url(#lineGradient-${pageIndex})`}
                               strokeWidth="3"
                               points={generateTrajectoryData(pageIndex)
-                                .map((val, i) => `${80 + i * 120},${260 - val * 2}`)
+                                .map(
+                                  (val, i) => `${80 + i * 120},${260 - val * 2}`
+                                )
                                 .join(" ")}
                               style={{
-                                filter: "drop-shadow(0 0 8px rgba(139, 92, 246, 0.5))",
+                                filter:
+                                  "drop-shadow(0 0 8px rgba(139, 92, 246, 0.5))",
                               }}
                             />
 
@@ -962,10 +1148,16 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                                   fill="#8B5CF6"
                                   className="hover:r-8 transition-all cursor-pointer"
                                   style={{
-                                    filter: "drop-shadow(0 0 6px rgba(139, 92, 246, 0.8))",
+                                    filter:
+                                      "drop-shadow(0 0 6px rgba(139, 92, 246, 0.8))",
                                   }}
                                 />
-                                <circle cx={80 + i * 120} cy={260 - val * 2} r="2" fill="white" />
+                                <circle
+                                  cx={80 + i * 120}
+                                  cy={260 - val * 2}
+                                  r="2"
+                                  fill="white"
+                                />
                               </g>
                             ))}
 
@@ -990,7 +1182,9 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                           <div className="absolute top-2 sm:top-6 right-2 sm:right-6 bg-gray-900/80 backdrop-blur-sm p-2 sm:p-4 rounded-xl border border-gray-700/50">
                             <div className="flex items-center space-x-2 sm:space-x-3">
                               <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
-                              <span className="text-xs sm:text-sm text-gray-300 font-medium">Success Trajectory</span>
+                              <span className="text-xs sm:text-sm text-gray-300 font-medium">
+                                Success Trajectory
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -1007,7 +1201,12 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                       </CardHeader>
                       <CardContent>
                         <div className="h-64 sm:h-96 flex  items-center justify-center bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-xl backdrop-blur-sm border border-gray-700/30">
-                          <svg width="100%" height="100%" viewBox="0 0 500 480" className="max-w-sm sm:max-w-none">
+                          <svg
+                            width="100%"
+                            height="100%"
+                            viewBox="0 0 500 480"
+                            className="max-w-sm sm:max-w-none"
+                          >
                             <g transform="translate(225,225)">
                               {/* Enhanced Grid circles */}
                               {[40, 80, 120, 160, 200].map((r, i) => (
@@ -1025,7 +1224,7 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
 
                               {/* Grid lines */}
                               {[0, 1, 2, 3, 4, 5].map((i) => {
-                                const angle = ((i * 60 - 90) * Math.PI) / 180
+                                const angle = ((i * 60 - 90) * Math.PI) / 180;
                                 return (
                                   <line
                                     key={i}
@@ -1037,15 +1236,30 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                                     strokeWidth="1"
                                     opacity="0.4"
                                   />
-                                )
+                                );
                               })}
 
                               {/* Enhanced Data polygon */}
                               <defs>
-                                <linearGradient id={`radarGradient-${pageIndex}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                                  <stop offset="0%" stopColor="rgba(139, 92, 246, 0.3)" />
-                                  <stop offset="50%" stopColor="rgba(236, 72, 153, 0.2)" />
-                                  <stop offset="100%" stopColor="rgba(6, 182, 212, 0.3)" />
+                                <linearGradient
+                                  id={`radarGradient-${pageIndex}`}
+                                  x1="0%"
+                                  y1="0%"
+                                  x2="100%"
+                                  y2="100%"
+                                >
+                                  <stop
+                                    offset="0%"
+                                    stopColor="rgba(139, 92, 246, 0.3)"
+                                  />
+                                  <stop
+                                    offset="50%"
+                                    stopColor="rgba(236, 72, 153, 0.2)"
+                                  />
+                                  <stop
+                                    offset="100%"
+                                    stopColor="rgba(6, 182, 212, 0.3)"
+                                  />
                                 </linearGradient>
                               </defs>
                               <polygon
@@ -1053,16 +1267,17 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                                   pageIndex === 0
                                     ? "0,-160 138,-80 138,80 0,120 -138,80 -138,-80"
                                     : pageIndex === 1
-                                      ? "0,-140 160,-60 100,100 0,90 -160,60 -100,-100"
-                                      : pageIndex === 2
-                                        ? "0,-180 120,-90 160,60 0,130 -120,90 -160,-60"
-                                        : "0,-150 130,-75 120,90 0,110 -130,75 -120,-90"
+                                    ? "0,-140 160,-60 100,100 0,90 -160,60 -100,-100"
+                                    : pageIndex === 2
+                                    ? "0,-180 120,-90 160,60 0,130 -120,90 -160,-60"
+                                    : "0,-150 130,-75 120,90 0,110 -130,75 -120,-90"
                                 }
                                 fill={`url(#radarGradient-${pageIndex})`}
                                 stroke="#8B5CF6"
                                 strokeWidth="3"
                                 style={{
-                                  filter: "drop-shadow(0 0 10px rgba(139, 92, 246, 0.4))",
+                                  filter:
+                                    "drop-shadow(0 0 10px rgba(139, 92, 246, 0.4))",
                                 }}
                               />
 
@@ -1180,8 +1395,18 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
               onClick={closeDetailModal}
               className="absolute top-4 right-4 z-10 bg-gray-800/80 hover:bg-gray-700 text-white rounded-full p-2 transition-all duration-200 hover:scale-110"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
 
@@ -1206,7 +1431,10 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
                   </h3>
                   <ul className="space-y-3">
                     {parsedFutures[currentPage].pros.map((pro, index) => (
-                      <li key={index} className="text-gray-200 flex items-start text-sm sm:text-base">
+                      <li
+                        key={index}
+                        className="text-gray-200 flex items-start text-sm sm:text-base"
+                      >
                         <span className="text-green-400 mr-3 mt-1">✓</span>
                         <span>{pro}</span>
                       </li>
@@ -1216,12 +1444,17 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
 
                 <div className="bg-gradient-to-br from-red-900/20 to-red-800/20 rounded-xl p-4 sm:p-6 border border-red-500/20">
                   <h3 className="text-lg sm:text-xl font-bold text-red-400 mb-4 flex items-center">
-                    <span className="w-6 h-6 bg-red-500/20 rounded-full flex items-center justify-center mr-3">-</span>
+                    <span className="w-6 h-6 bg-red-500/20 rounded-full flex items-center justify-center mr-3">
+                      -
+                    </span>
                     Key Challenges
                   </h3>
                   <ul className="space-y-3">
                     {parsedFutures[currentPage].cons.map((con, index) => (
-                      <li key={index} className="text-gray-200 flex items-start text-sm sm:text-base">
+                      <li
+                        key={index}
+                        className="text-gray-200 flex items-start text-sm sm:text-base"
+                      >
                         <span className="text-red-400 mr-3 mt-1">⚠</span>
                         <span>{con}</span>
                       </li>
@@ -1244,5 +1477,5 @@ ${currentFuture.cons.map((con) => `• ${con}`).join("\n")}
         </div>
       )}
     </div>
-  )
+  );
 }

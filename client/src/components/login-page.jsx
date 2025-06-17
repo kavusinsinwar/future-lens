@@ -1,51 +1,54 @@
-"use client"
+"use client";
 
-import { useState, useContext } from "react"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { useNavigate, Link } from "react-router-dom"
-import { UserContext } from "../Context/useContext"
+import { useState, useContext } from "react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { useNavigate, Link } from "react-router-dom";
+import { UserContext } from "../Context/useContext";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [errorMsg, setErrorMsg] = useState("")
-  const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate()
-  const { setUser } = useContext(UserContext)
+  const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const handleLogin = async (e) => {
-    e.preventDefault()
-    setErrorMsg("")
-    setLoading(true)
+    e.preventDefault();
+    setErrorMsg("");
+    setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3001/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      })
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Login failed")
+        throw new Error(data.error || "Login failed");
       }
 
-      localStorage.setItem("token", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
-      setUser(data.user)
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setUser(data.user);
 
       setTimeout(() => {
-        navigate("/main")
-      }, 100)
+        navigate("/main");
+      }, 100);
     } catch (err) {
-      setErrorMsg(err.message)
+      setErrorMsg(err.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#121212] via-[#1A1A21] to-[#2A1A3A] text-white relative overflow-hidden">
@@ -83,8 +86,8 @@ export default function LoginPage() {
                 Welcome Back to the Future
               </h2>
               <p className="text-gray-400 leading-relaxed">
-                Continue your journey of exploring alternative futures and making better decisions with AI-powered
-                insights.
+                Continue your journey of exploring alternative futures and
+                making better decisions with AI-powered insights.
               </p>
             </div>
 
@@ -96,7 +99,9 @@ export default function LoginPage() {
                 { icon: "🎯", label: "Precise" },
               ].map(({ icon, label }, i) => (
                 <div key={i} className="text-center group">
-                  <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">{icon}</div>
+                  <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">
+                    {icon}
+                  </div>
                   <span className="text-xs text-gray-400 group-hover:text-white transition-colors duration-200">
                     {label}
                   </span>
@@ -122,12 +127,17 @@ export default function LoginPage() {
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-2">
                   Sign In
                 </h2>
-                <p className="text-gray-400 text-sm">Access your future scenarios</p>
+                <p className="text-gray-400 text-sm">
+                  Access your future scenarios
+                </p>
               </div>
 
               <form className="space-y-6" onSubmit={handleLogin}>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-gray-300">
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-medium text-gray-300"
+                  >
                     Email Address
                   </label>
                   <Input
@@ -142,7 +152,10 @@ export default function LoginPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="password" className="text-sm font-medium text-gray-300">
+                  <label
+                    htmlFor="password"
+                    className="text-sm font-medium text-gray-300"
+                  >
                     Password
                   </label>
                   <Input
@@ -158,9 +171,7 @@ export default function LoginPage() {
                     <Link
                       to="#"
                       className="text-sm text-purple-400 hover:text-purple-300 transition-colors duration-200"
-                    >
-                     
-                    </Link>
+                    ></Link>
                   </div>
                 </div>
 
@@ -203,11 +214,14 @@ export default function LoginPage() {
 
             {/* Additional Info */}
             <div className="text-center text-xs text-gray-500">
-              <p>By signing in, you agree to our Terms of Service and Privacy Policy</p>
+              <p>
+                By signing in, you agree to our Terms of Service and Privacy
+                Policy
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
