@@ -14,10 +14,8 @@ const SimulationDashboard = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/simulate`,
-        {
-          decision,
-        }
+        `${import.meta.env.VITE_BACKEND_URL}/api/simulate/run`,
+        { decision }
       );
 
       setSimulationData(res.data.futures);
