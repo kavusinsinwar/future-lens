@@ -11,14 +11,17 @@ const authRoutes = require("./routes/auth");
 const app = express();
 connectDB();
 
-console.log("🔄 Incoming request from:", req.headers.origin);
+// ✅ Add this middleware to log each incoming origin
+app.use((req, res, next) => {
+  console.log("🔄 Incoming request from:", req.headers.origin);
+  next();
+});
 
 app.use(cors({
   origin: process.env.CLIENT_URL,
   credentials: true
 }));
 
-// Optional but helpful for preflight CORS debugging
 app.options("*", cors({
   origin: process.env.CLIENT_URL,
   credentials: true
@@ -34,7 +37,7 @@ app.use("/api/simulate", simulateRoutes);
 
 app._router.stack.forEach((r) => {
   if (r.route && r.route.path) {
-    console.log("Registered route:", r.route.path);
+    console.log("✅ Registered route:", r.route.path);
   }
 });
 
