@@ -11,9 +11,11 @@ const authRoutes = require("./routes/auth");
 const app = express();
 connectDB();
 
+console.log("🔄 Incoming request from:", req.headers.origin);
+
 app.use(cors({
   origin: process.env.CLIENT_URL,
-  credentials: true,
+  credentials: true
 }));
 
 // Optional but helpful for preflight CORS debugging
@@ -24,8 +26,17 @@ app.options("*", cors({
 
 app.use(express.json());
 
-app.use("/api/simulate", simulateRoutes);
+console.log("Mounting auth route...");
 app.use("/api/auth", authRoutes);
+
+console.log("Mounting simulate route...");
+app.use("/api/simulate", simulateRoutes);
+
+app._router.stack.forEach((r) => {
+  if (r.route && r.route.path) {
+    console.log("Registered route:", r.route.path);
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
