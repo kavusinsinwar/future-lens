@@ -1,4 +1,8 @@
 const jwt = require("jsonwebtoken");
+app.use((req, res, next) => {
+  console.log(`🛰️  Incoming: ${req.method} ${req.originalUrl} from ${req.headers.origin}`);
+  next();
+});
 
 const protect = (req, res, next) => {
   const authHeader = req.headers.authorization;
