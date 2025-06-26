@@ -10,6 +10,6 @@ const simulationLimiter = rateLimit({
   message: "Too many requests. Please wait and try again.",
 });
 
-router.post("/run", simulationLimiter, handleSimulation); // <- Fix here
+router.post("/run", simulationLimiter, handleSimulation);
 
 module.exports = router;
