@@ -8,16 +8,16 @@ const authRoutes = require("./routes/auth");
 
 const app = express();
 
-// ✅ Log incoming requests for debugging
+
 app.use((req, res, next) => {
   console.log("🛰️", req.method, req.originalUrl, "| Origin:", req.headers.origin);
   next();
 });
 
-// ✅ Connect to MongoDB
+
 connectDB();
 
-// ✅ CORS Configuration
+
 const allowedOrigins = [
   "https://future-lens.vercel.app",
   "https://future-lens.onrender.com",
@@ -42,7 +42,6 @@ app.use(
   })
 );
 
-// ✅ Pre-flight handling
 app.options("*", cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -55,24 +54,23 @@ app.options("*", cors({
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 }));
 
-// ✅ Built-in Middleware
+
 app.use(express.json());
 
-// ✅ Mount Routes
+
 console.log("🔐 Mounting /api/auth");
 app.use("/api/auth", authRoutes);
 
 console.log("🧠 Mounting /api/simulate");
 app.use("/api/simulate", simulateRoutes);
 
-// ✅ Log all registered routes
+
 app._router.stack.forEach((r) => {
   if (r.route && r.route.path) {
     console.log("🔗 Registered route:", r.route.path);
   }
 });
 
-// ✅ Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
