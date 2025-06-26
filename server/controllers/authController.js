@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
     const userExists = await User.findOne({ email });
     if (userExists) return res.status(400).json({ error: "Email already exists" });
 
-    // ✅ DO NOT hash manually — let Mongoose pre("save") handle it
+
     const user = await User.create({ name, email, password });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
